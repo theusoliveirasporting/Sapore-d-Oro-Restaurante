@@ -341,6 +341,7 @@ h1, h2, h3, h4 {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  filter: brightness(0.4) contrast(1.1);
 }
 
 .hero-gradient {
@@ -349,11 +350,7 @@ h1, h2, h3, h4 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.65) 100%),
-    radial-gradient(ellipse at 30% 50%, rgba(201, 169, 97, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 50%, rgba(74, 93, 78, 0.3) 0%, transparent 50%);
-  animation: gradientShift 15s ease-in-out infinite;
+  display: none;
 }
 
 @keyframes gradientShift {
@@ -371,26 +368,31 @@ h1, h2, h3, h4 {
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   padding: var(--spacing-lg);
   max-width: 800px;
 }
 
 .hero-subtitle {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: var(--color-gold-light);
   margin-bottom: var(--spacing-sm);
   animation: fadeInUp 1s ease forwards;
   opacity: 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.6);
+  text-shadow: 
+    -1px -1px 0 rgba(0,0,0,0.5),  
+     1px -1px 0 rgba(0,0,0,0.5),
+    -1px  1px 0 rgba(0,0,0,0.5),
+     1px  1px 0 rgba(0,0,0,0.5),
+     0 5px 15px rgba(0,0,0,1);
 }
 
 .hero-title {
-  font-size: clamp(4rem, 12vw, 8rem);
-  line-height: 0.9;
+  font-size: clamp(5rem, 15vw, 10rem);
+  line-height: 0.85;
   margin-bottom: var(--spacing-md);
   text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9), 0 6px 20px rgba(0, 0, 0, 0.7);
 }
@@ -401,6 +403,12 @@ h1, h2, h3, h4 {
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
   animation-delay: 0.2s;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0 10px 30px rgba(0,0,0,0.8);
 }
 
 .title-line.accent {
@@ -410,14 +418,19 @@ h1, h2, h3, h4 {
 }
 
 .hero-description {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 500px;
-  margin: 0 auto var(--spacing-lg);
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 1);
+  max-width: 650px;
+  margin: 0 auto var(--spacing-xl);
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
   animation-delay: 0.6s;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 4px 12px rgba(0, 0, 0, 0.6);
+  text-shadow: 
+    -1px -1px 0 rgba(0,0,0,0.5),  
+     1px -1px 0 rgba(0,0,0,0.5),
+    -1px  1px 0 rgba(0,0,0,0.5),
+     1px  1px 0 rgba(0,0,0,0.5),
+     0 5px 15px rgba(0,0,0,1);
   line-height: 1.8;
 }
 
@@ -1024,6 +1037,11 @@ h1, h2, h3, h4 {
     padding: 0 var(--spacing-sm);
   }
 
+  .logo {
+    position: relative;
+    z-index: 1002;
+  }
+
   .logo-text {
     font-size: 1.4rem;
   }
@@ -1045,6 +1063,7 @@ h1, h2, h3, h4 {
     gap: var(--spacing-md);
     transition: right var(--transition-base);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
   }
 
   .nav-links.active {
@@ -1059,9 +1078,16 @@ h1, h2, h3, h4 {
 
   .nav-toggle {
     display: flex;
-    z-index: 1001;
+    position: relative;
+    z-index: 1100;
     padding: 10px;
     margin-right: -10px;
+  }
+
+  .nav-toggle.active {
+    position: fixed;
+    right: var(--spacing-sm);
+    top: var(--spacing-sm);
   }
 
   .nav-toggle span {
@@ -1072,6 +1098,10 @@ h1, h2, h3, h4 {
 
   .navbar.scrolled .nav-toggle span {
     background-color: var(--color-text);
+  }
+
+  .nav-toggle.active span {
+    background-color: var(--color-text) !important;
   }
 
   .nav-toggle.active span:nth-child(1) {
@@ -1088,23 +1118,27 @@ h1, h2, h3, h4 {
 
   /* Hero */
   .hero-content {
+    position: relative;
     padding: var(--spacing-md);
+    padding-bottom: 5rem;
   }
 
   .hero-subtitle {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
+    font-size: 1rem;
+    letter-spacing: 0.25em;
   }
 
   .hero-title {
-    font-size: 2.5rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7);
+    font-size: clamp(3.5rem, 15vw, 5.5rem);
+    line-height: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 1), 0 4px 20px rgba(0, 0, 0, 0.8);
   }
 
   .hero-description {
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     max-width: 100%;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+    line-height: 1.6;
   }
 
   .hero-decoration {
@@ -1112,7 +1146,8 @@ h1, h2, h3, h4 {
   }
 
   .scroll-indicator {
-    bottom: var(--spacing-md);
+    bottom: 1rem;
+    transform: translateX(-50%) scale(0.8);
   }
 
   /* Sections */
@@ -1148,12 +1183,13 @@ h1, h2, h3, h4 {
     position: relative;
     bottom: auto;
     right: auto;
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-md);
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-xs);
-    padding: var(--spacing-xs) var(--spacing-sm);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
     min-width: auto;
+    border-left: 3px solid var(--color-white);
   }
 
   .experience-badge .years {
@@ -1182,9 +1218,10 @@ h1, h2, h3, h4 {
   .menu-categories {
     flex-wrap: nowrap;
     overflow-x: auto;
+    justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: var(--spacing-xs);
+    padding: 0 20px var(--spacing-xs) 20px;
     margin-bottom: var(--spacing-md);
   }
 
@@ -1334,15 +1371,16 @@ h1, h2, h3, h4 {
   }
 
   .hero-title {
-    font-size: 2.5rem;
+    font-size: clamp(3rem, 15vw, 4rem);
   }
 
   .hero-subtitle {
-    font-size: 0.65rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
   }
 
   .hero-description {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
   }
 
   .hero-cta .btn {
@@ -1365,9 +1403,12 @@ h1, h2, h3, h4 {
   .menu-categories {
     flex-wrap: nowrap;
     overflow-x: auto;
+    justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: var(--spacing-xs);
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
   }
 
   .menu-categories::-webkit-scrollbar {
@@ -1404,6 +1445,7 @@ h1, h2, h3, h4 {
 @media (max-width: 768px) and (orientation: landscape) {
   .hero {
     min-height: 80vh;
+    padding-bottom: 2rem;
   }
 
   .hero-title {
@@ -1416,6 +1458,10 @@ h1, h2, h3, h4 {
 
   .gallery-grid {
     grid-auto-rows: 120px;
+  }
+
+  .scroll-indicator {
+    display: none;
   }
 
   .gallery {
